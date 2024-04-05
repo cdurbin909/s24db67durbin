@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1= title
+
+  -let items = results;
+
+  div(class="container-fluid")
+    div(class="row")
+      - for (let i = 0; i < items.length; i++)
+        div(class="col-sm-2")
+        | #{items[i].title}
