@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  h1= title 
+
+  - let gameid = toShow._id
+  - let game_title = toShow.title
+  - let game_size = toShow.game_size
+  - let game_style = toShow.game_style
+  - let rating = toShow.rating
+
+  div
+    div.row
+      div(class='gameAttr mr-3') Game ID is:
+      div #{gameid}
+    div.row
+      div(class='gameAttr mr-3') Game Title is:
+      div #{game_title}
+    div.row
+      div(class='gameAttr mr-3') Game Size is:
+      div #{game_size}
+    div.row
+      div(class='gameAttr mr-3') Game Style is:
+      div #{game_style}
+    div.row
+      div(class='gameAttr mr-3') Game Rating is:
+      div #{rating}

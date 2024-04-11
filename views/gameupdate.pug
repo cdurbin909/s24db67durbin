@@ -1,0 +1,47 @@
+extends layout
+
+block content
+  h1= title
+
+  - let gameid = toShow._id
+  - let game_title = toShow.title
+  - let game_style = toShow.game_style
+  - let game_size = toShow.game_size
+  - let rating = toShow.rating
+
+  div.row(class='mb-2')
+    div.mr-1 ID is
+    div #{gameid}
+  - let actionid = "/resource/games/" + gameid
+  form(id='GameForm', action= actionid, method="PUT")
+    div.form-group
+      label.gameAttr(for='game_title') Game Title
+      input#game_title(type='text', name='game_title', value= game_title)
+    div.form-group
+      label.gameAttr(for='game_style') Game Style 
+      input#game_style(type='text', name='game_style', value= game_style)
+    div.form-group
+      label.gameAttr(for='game_size') Game Size
+      input#game_size(type='number', name='game_size', value= game_size)
+    div.form-group
+      label.gameAttr(for='rating') Game Rating
+      input#rating(type='number', name='rating', value= rating)
+    input(type="submit")
+
+  script.
+    document.forms['GameForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO do something here to show user that form is being submitted
+      fetch(event.target.action, {
+        method: 'PUT',
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+        return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        alert("Update succeded")
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        alert("Update failed " + error )
+      });
+    });
