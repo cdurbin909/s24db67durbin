@@ -8,7 +8,7 @@ var game_controller = require("../controllers/game");
 router.get("/", api_controller.api);
 /// GAME ROUTES ///
 // POST request for creating a Game.
-router.post("/game", game_controller.game_create_post);
+router.post("/games", game_controller.game_create_post);
 // DELETE request to delete Costume.
 router.delete("/games/:id", game_controller.game_delete);
 // PUT request to update Costume.
